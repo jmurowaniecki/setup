@@ -13,8 +13,12 @@ apt update  -y && \
 apt upgrade -y && \
 apt install -y    \
     curl opensshd \
-    vim  git nmap
+    vim make nmap \
+    git pass
 
 snap install atom   --classic
 snap install vscode --classic
 snap install postman
+
+wget -q -O- https://github.com/docker/docker-credential-helpers/releases/download/v0.6.0/docker-credential-pass-v0.6.0-amd64.tar.gz | tar -x && \
+  mv docker-credential-pass /usr/bin/docker-credential-pass

@@ -13,7 +13,8 @@ apt update  -y && \
 apt upgrade -y && \
 apt install -y    \
     curl opensshd \
-    vim  git nmap
+    vim  git nmap \
+    net-utils
 
 snap install atom   --classic
 snap install vscode --classic

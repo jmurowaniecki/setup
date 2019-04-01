@@ -27,7 +27,8 @@ apt-get remove  -y docker docker-engine docker.io containerd runc
 apt-get update  -y
 apt-get install -y gnupg-agent \
     apt-transport-https     jq \
-    ca-certificates       curl \
+    rng-tools5 ca-certificates \
+    rng-tools     pass    curl \
     software-properties-common
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -50,12 +51,6 @@ chmod   -R          g+rwx          "$homepath"
 
 systemctl enable  docker && \
 systemctl restart docker.service
-
-VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
-DESTINATION="/usr/local/bin/docker-compose"
-curl -L "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-     -o  "$DESTINATION"
-chmod +x "$DESTINATION"
 
 service docker restart    && \
         docker-compose -v && \
